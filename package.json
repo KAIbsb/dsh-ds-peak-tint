@@ -1,6 +1,6 @@
 {
   "name": "dsh-ds-peak-tint",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tint DeepSeek-family model names in the DSH web UI by peak/off-peak rate period: light red during peak, light green off-peak.",
   "type": "module",
   "main": "index.js",
