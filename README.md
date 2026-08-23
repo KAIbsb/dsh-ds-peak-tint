@@ -11,7 +11,7 @@ DeepSeek 系模型名峰谷着色插件，为 [DeepSeek Harness](https://github.
 ## 安装
 
 ```sh
-dsh plugin --profile web add github:KAIbsb/dsh-ds-peak-tint#v0.1.0
+dsh plugin --profile web add github:KAIbsb/dsh-ds-peak-tint#v0.1.1
 ```
 
 若尚未安装 DSH，先执行 `npm i -g @deepseek-ai/dsh`。安装后**重启 DSH** 生效。
