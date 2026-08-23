@@ -2,8 +2,8 @@
  * dsh-ds-peak-tint — browser half.
  *
  * DeepSeek 系模型名按峰谷时段着色：
- *   - 峰（peak）：UTC 01:00-04:00、06:00-10:00 → 浅红 #ff9d9d
- *   - 谷（off-peak）：其余 → 浅绿 #9dffb0
+ *   - 峰（peak）：北京时间 周一至周五 09:00-12:00、14:00-18:00 → 浅红 #ff9d9d
+ *   - 谷（off-peak）：其余（含周末全天）→ 浅绿 #9dffb0
  *
  * 目标元素：
  *   1. composer 模型选择触发按钮（aria-haspopup="menu"）内的模型名 span（首个 span）。
@@ -20,8 +20,13 @@
   var CHECK_MS = 60 * 1000; // 每分钟重判一次，覆盖峰谷边界
 
   function isPeak(date) {
-    var h = date.getUTCHours();
-    return (h >= 1 && h < 4) || (h >= 6 && h < 10);
+    // 北京时间 = UTC+8
+    var bj = new Date(date.getTime() + 8 * 3600 * 1000);
+    var dow = bj.getUTCDay(); // 0=周日, 1-5=周一至周五, 6=周六
+    var h = bj.getUTCHours();
+    var weekday = dow >= 1 && dow <= 5;
+    var peakHour = (h >= 9 && h < 12) || (h >= 14 && h < 18);
+    return weekday && peakHour;
   }
 
   function isDeepseek(text) {
